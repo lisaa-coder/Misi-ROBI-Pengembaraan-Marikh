@@ -1,0 +1,6 @@
+{
+  "name": "MISI ROBI: Pengembaraan di Planet Marikh",
+  "description": "Permainan pengembaraan membaca interaktif Bahasa Melayu Tahun 4 bersama robot penjelajah ROBI di Planet Marikh dengan 5 misi kefahaman berturutan.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
