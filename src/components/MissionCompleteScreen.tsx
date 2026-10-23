@@ -55,7 +55,7 @@ export const MissionCompleteScreen: React.FC<MissionCompleteScreenProps> = ({
           Tahniah, Penjelajah Marikh!
         </h2>
         <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-xl mx-auto">
-          Kamu dan robot ROBI telah berjaya menamatkan kelima-lima babak pengembaraan di Planet Merah serta menjawab semua soalan pemahaman!
+          Kamu dan robot Robi telah berjaya menamatkan kelima-lima babak pengembaraan di Planet Merah serta menjawab semua soalan pemahaman!
         </p>
       </div>
 
@@ -156,7 +156,7 @@ export const MissionCompleteScreen: React.FC<MissionCompleteScreenProps> = ({
               <span>Tarikh: {currentDate}</span>
             </div>
             <div className="text-right">
-              <p className="font-bold text-slate-800 dark:text-slate-200">Stesen Saintis Bumi & Robot ROBI</p>
+              <p className="font-bold text-slate-800 dark:text-slate-200">Stesen Saintis Bumi & Robot Robi</p>
               <p className="text-[11px] text-slate-400">Pusat Kawalan Misi Marikh</p>
             </div>
           </div>

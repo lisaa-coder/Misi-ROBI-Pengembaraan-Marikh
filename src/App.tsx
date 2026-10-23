@@ -154,7 +154,7 @@ export default function App() {
               <div className="p-6 sm:p-8 space-y-6">
                 <div className="space-y-3 text-slate-300 text-sm sm:text-base leading-relaxed">
                   <p>
-                    Selamat datang, penjelajah cilik! Mari ikuti pengembaraan hebat bersama <strong>ROBI</strong>, sebuah robot penjelajah beroda enam yang berani meneroka batuan dan rahsia di permukaan Planet Marikh.
+                    Selamat datang, penjelajah cilik! Mari ikuti pengembaraan hebat bersama <strong>Robi</strong>, sebuah robot penjelajah beroda enam yang berani meneroka batuan dan rahsia di permukaan Planet Marikh.
                   </p>
                   <p>
                     Terdapat <strong>5 babak cerita berturutan</strong>. Baca setiap babak petikan dengan teliti dan jawab soalan pemahaman untuk mengumpulkan sehingga <strong>15 Bintang Misi</strong> dan dapatkan <strong>Sijil Rasmi Penjelajah Marikh</strong>!

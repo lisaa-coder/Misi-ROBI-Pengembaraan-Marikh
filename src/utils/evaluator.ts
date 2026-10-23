@@ -59,34 +59,37 @@ export function evaluatePupilAnswer(
   let tips = "";
 
   if (mission.missionNumber === 1) {
-    // Mission 1: 2 features and their uses
-    // Features: roda/bergerak, kamera/gambar, antena/maklumat
-    const matchedCount = matchedConcepts.length;
-    if (matchedCount >= 2 && wordCount >= 6) {
+    // Mission 1: Tiga ciri Robi (enam roda, kamera, antena)
+    const hasWheels = cleanAnswer.includes('roda');
+    const hasCamera = cleanAnswer.includes('kamera');
+    const hasAntenna = cleanAnswer.includes('antena');
+    const count = (hasWheels ? 1 : 0) + (hasCamera ? 1 : 0) + (hasAntenna ? 1 : 0);
+
+    if (count === 3) {
       score = 3;
       praise = "🌟 Cemerlang! Jawapan kamu sangat lengkap dan tepat!";
-      feedbackMessage = "Hebat! Kamu berjaya menyatakan ciri-ciri ROBI serta kegunaannya dengan jelas mengikut petikan.";
+      feedbackMessage = "Hebat! Kamu berjaya menyatakan ketiga-tiga ciri Robi iaitu enam roda, kamera dan antena mengikut petikan.";
       tips = "Teruskan amalan menjawab menggunakan ayat yang gramatis!";
-    } else if (matchedCount >= 1 || wordCount >= 4) {
+    } else if (count === 2 || (count === 1 && wordCount >= 4)) {
       score = 2;
-      praise = "👍 Bagus! Kamu sudah memahami sebahagian jawapan!";
-      feedbackMessage = "Jawapan kamu mengandungi fakta yang betul. Pastikan kamu menyatakan sekurang-kurangnya DUA ciri beserta kegunaannya untuk markah penuh.";
+      praise = "👍 Bagus! Kamu sudah menyatakan sebahagian ciri Robi!";
+      feedbackMessage = `Kamu telah menyatakan ${count} ciri Robi dengan betul. Sila pastikan kamu menyatakan ketiga-tiga ciri (enam roda, kamera dan antena) untuk markah penuh.`;
       tips = "Bandingkan jawapan kamu dengan Cadangan Jawapan Saintis.";
     } else {
       score = 1;
       praise = "💪 Usaha yang murni! Mari cuba lagi.";
-      feedbackMessage = "Jawapan kamu masih ringkas. Cuba sebutkan apa fungsi roda dan kamera pada badan ROBI.";
-      tips = "Baca perenggan pertama dan lengkapkan jawapan kamu.";
+      feedbackMessage = "Jawapan kamu masih belum lengkap. Cari tiga peralatan yang ada pada badan Robi dalam ayat kedua petikan.";
+      tips = "Sebutkan enam roda, kamera, dan antena.";
     }
   } else if (mission.missionNumber === 2) {
-    // Mission 2: Zat besi & kemerah-merahan
+    // Mission 2: Mengapakah Marikh dikenali sebagai Planet Merah? (zat besi & kemerah-merahan)
     const hasIron = cleanAnswer.includes('besi') || cleanAnswer.includes('zat');
     const hasRed = cleanAnswer.includes('merah') || cleanAnswer.includes('kemerah');
 
     if (hasIron && hasRed) {
       score = 3;
       praise = "🌟 Cemerlang! Kamu seperti saintis cilik Marikh!";
-      feedbackMessage = "Tepat sekali! Kandungan zat besi dalam tanah dan batuan menjadikan Marikh kelihatan kemerah-merahan.";
+      feedbackMessage = "Tepat sekali! Kandungan zat besi dalam tanah dan batuan menyebabkan permukaan Marikh kelihatan kemerah-merahan.";
       tips = "Gaya penulisan jawapan kamu sangat memuaskan!";
     } else if (hasIron || hasRed || wordCount >= 4) {
       score = 2;
@@ -100,67 +103,67 @@ export function evaluatePupilAnswer(
       tips = "Baca semula ayat ke-4 dalam Babak 2.";
     }
   } else if (mission.missionNumber === 3) {
-    // Mission 3: Batu besar menghalang laluan
+    // Mission 3: Halangan yang dihadapi oleh Robi (batu besar menghalang laluan/perjalanan)
     const hasBoulder = cleanAnswer.includes('batu') || cleanAnswer.includes('besar');
-    const hasBlock = cleanAnswer.includes('halang') || cleanAnswer.includes('laluan') || cleanAnswer.includes('sekat') || cleanAnswer.includes('perjalanan');
+    const hasBlock = cleanAnswer.includes('halang') || cleanAnswer.includes('laluan') || cleanAnswer.includes('perjalanan') || cleanAnswer.includes('jalan');
 
     if (hasBoulder && hasBlock) {
       score = 3;
       praise = "🌟 Syabas! Jawapan yang sangat jitu dan padat!";
-      feedbackMessage = "Tepat sekali! ROBI berhadapan dengan batu besar yang menghalang laluannya semasa mengembara.";
+      feedbackMessage = "Tepat sekali! Robi menemui sebuah batu besar yang menghalang laluannya semasa meneruskan perjalanannya.";
       tips = "Penguasaan kefahaman teks kamu amat membanggakan!";
     } else if (hasBoulder || hasBlock || wordCount >= 3) {
       score = 2;
       praise = "👍 Usaha yang baik!";
-      feedbackMessage = "Kamu mengenal pasti objek atau rintangan yang dihadapi. Pastikan kamu menyatakan bahawa batu besar itu menghalang laluan ROBI.";
-      tips = "Gunakan perkataan 'batu besar' dan 'menghalang laluan'.";
+      feedbackMessage = "Kamu mengenal pasti rintangan yang dihadapi. Pastikan kamu menyatakan bahawa batu besar itu menghalang laluan Robi.";
+      tips = "Gunakan perkataan 'batu besar' dan 'menghalang laluannya'.";
     } else {
       score = 1;
       praise = "💪 Teruskan semangat membaca!";
-      feedbackMessage = "Apakah yang tiba-tiba muncul di hadapan ROBI? Rujuk perenggan pertama Babak 3.";
+      feedbackMessage = "Apakah yang tiba-tiba muncul di hadapan Robi? Rujuk perenggan pertama Babak 3.";
       tips = "Tulis semula jawapan dengan lebih terperinci.";
     }
   } else if (mission.missionNumber === 4) {
-    // Mission 4: Tindakan memeriksa kawasan dengan kamera & mencari laluan lain
-    const hasCameraOrInspect = cleanAnswer.includes('kamera') || cleanAnswer.includes('periksa') || cleanAnswer.includes('tengok') || cleanAnswer.includes('imbas');
-    const hasPathOrBypass = cleanAnswer.includes('laluan') || cleanAnswer.includes('sebelah') || cleanAnswer.includes('lepasi') || cleanAnswer.includes('jalan');
+    // Mission 4: Alat yang digunakan untuk menghantar maklumat (antena)
+    const hasAntenna = cleanAnswer.includes('antena') || cleanAnswer.includes('antenanya');
 
-    if (hasCameraOrInspect && hasPathOrBypass) {
+    if (hasAntenna) {
       score = 3;
       praise = "🌟 Luar biasa! Jawapan kamu sangat tepat!";
-      feedbackMessage = "ROBI bertindak bijak dengan memeriksa kawasan menggunakan kamera dan mencari laluan lain di sebelah batu tersebut.";
-      tips = "Penerangan kamu sangat teliti dan menepati skema soalan!";
-    } else if (hasCameraOrInspect || hasPathOrBypass || wordCount >= 4) {
+      feedbackMessage = "Tepat sekali! Robi menggunakan antenanya untuk menghantar maklumat kepada saintis di Bumi.";
+      tips = "Penerangan kamu sangat jitu dan menepati skema soalan!";
+    } else if (wordCount >= 2 && (cleanAnswer.includes('hantar') || cleanAnswer.includes('maklumat') || cleanAnswer.includes('bumi'))) {
       score = 2;
-      praise = "👍 Jawapan yang baik!";
-      feedbackMessage = "Kamu telah menyatakan tindakan yang diambil oleh ROBI. Untuk jawapan terbaik, nyatakan bahawa ROBI menggunakan kamera untuk memeriksa dan mencari laluan lain.";
-      tips = "Rujuk tindakan ROBI dalam Babak 3 & 4.";
+      praise = "👍 Hampir tepat!";
+      feedbackMessage = "Kamu faham tujuan tindakan tersebut, tetapi belum menamakan alat yang digunakan. Namakan alat komunikasi yang terletak di badan Robi.";
+      tips = "Rujuk perkataan 'antena' dalam Babak 4.";
     } else {
       score = 1;
       praise = "💪 Mari teliti semula petikan!";
-      feedbackMessage = "ROBI tidak panik apabila terhalang, dia menggunakan peralatannya untuk mencari jalan keluar.";
-      tips = "Baca apa yang ROBI lakukan menggunakan kameranya.";
+      feedbackMessage = "Apakah alat khusus yang digunakan oleh Robi untuk memancarkan maklumat ke Bumi? Baca ayat ketiga Babak 4.";
+      tips = "Alat tersebut ialah 'antena'.";
     }
   } else {
-    // Mission 5: Maklumat penting untuk saintis
-    const hasStudy = cleanAnswer.includes('kaji') || cleanAnswer.includes('kajian') || cleanAnswer.includes('faham') || cleanAnswer.includes('selidik');
-    const hasSurfaceOrLife = cleanAnswer.includes('permukaan') || cleanAnswer.includes('keadaan') || cleanAnswer.includes('hidup') || cleanAnswer.includes('kehidupan') || cleanAnswer.includes('marikh') || cleanAnswer.includes('planet');
+    // Mission 5: Apa yang dilihat oleh Robi di kejauhan? (bukit-bukit dan batuan yang masih belum diterokainya)
+    const hasHills = cleanAnswer.includes('bukit');
+    const hasRocks = cleanAnswer.includes('batuan') || cleanAnswer.includes('batu');
+    const hasExplore = cleanAnswer.includes('teroka') || cleanAnswer.includes('diterokai') || cleanAnswer.includes('belum');
 
-    if (hasStudy && hasSurfaceOrLife) {
+    if ((hasHills || hasRocks) && (hasExplore || (hasHills && hasRocks))) {
       score = 3;
-      praise = "🌟 Tahniah! Jawapan kamu bertaraf saintis cilik!";
-      feedbackMessage = "Maklumat ROBI sangat penting bagi membantu saintis mengkaji permukaan Marikh dan mengetahui tentang keadaan kehidupan zaman dahulu.";
-      tips = "Jawapan yang sangat matang dan bernas untuk murid Tahun 4!";
-    } else if (hasStudy || hasSurfaceOrLife || wordCount >= 4) {
+      praise = "🌟 Tahniah! Jawapan kamu sangat tepat dan lengkap!";
+      feedbackMessage = "Tepat sekali! Robi melihat bukit-bukit dan batuan yang masih belum diterokainya di kejauhan.";
+      tips = "Jawapan yang sangat cemerlang mengikut skema soalan Tahun 4!";
+    } else if (hasHills || hasRocks || hasExplore || wordCount >= 3) {
       score = 2;
       praise = "👍 Percubaan yang memuaskan!";
-      feedbackMessage = "Jawapan kamu menunjukkan pemahaman tentang tugas saintis. Lengkapkan lagi dengan menyatakan tujuan kajian saintis terhadap Marikh.";
-      tips = "Nyatakan kaitan maklumat itu dengan kajian permukaan planet Marikh.";
+      feedbackMessage = "Kamu telah menyatakan sebahagian daripada pemandangan yang dilihat Robi. Nyatakan bahawa Robi melihat bukit-bukit dan batuan yang belum diterokainya.";
+      tips = "Rujuk ayat kedua dalam Babak 5.";
     } else {
       score = 1;
       praise = "💪 Usaha yang murni!";
-      feedbackMessage = "Mengapakah manusia memerlukan robot untuk mengkaji Marikh? Rujuk Babak 4 dan Babak 5.";
-      tips = "Sebutkan bagaimana maklumat ROBI membantu kajian saintis di Bumi.";
+      feedbackMessage = "Apakah bentuk muka bumi yang dilihat oleh Robi di kejauhan? Baca ayat kedua dalam Babak 5.";
+      tips = "Robi melihat bukit-bukit dan batuan.";
     }
   }
 

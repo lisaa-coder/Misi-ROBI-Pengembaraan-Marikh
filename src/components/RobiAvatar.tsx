@@ -201,7 +201,7 @@ export const RobiAvatar: React.FC<RobiAvatarProps> = ({
             fontFamily="'Outfit', sans-serif"
             letterSpacing="1"
           >
-            ROBI
+            Robi
           </text>
 
           {/* LED Headlights */}

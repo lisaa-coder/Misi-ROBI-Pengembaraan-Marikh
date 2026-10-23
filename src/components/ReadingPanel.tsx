@@ -44,10 +44,10 @@ export const ReadingPanel: React.FC<ReadingPanelProps> = ({
   const renderHighlightedPassage = () => {
     const text = mission.passageText;
     // We can highlight key terms so pupils can click to see vocabulary meaning
-    const wordsToHighlight = mission.vocabulary.map(v => v.word);
+    const wordsToHighlight = [...mission.vocabulary.map(v => v.word)].sort((a, b) => b.length - a.length);
 
     // Build regex to match terms
-    const regex = new RegExp(`(${wordsToHighlight.join('|')})`, 'gi');
+    const regex = new RegExp(`(${wordsToHighlight.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'gi');
     const parts = text.split(regex);
 
     return parts.map((part, index) => {

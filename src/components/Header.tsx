@@ -70,7 +70,7 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center gap-1.5 hover:text-orange-400 transition-colors whitespace-nowrap"
           >
             <BookOpen className="w-4 h-4 text-orange-400" />
-            <span>Kamus Marikh</span>
+            <span>Kamus Pengembaraan</span>
           </button>
           <button
             onClick={() => { playClickSound(); onOpenGuide(); }}
